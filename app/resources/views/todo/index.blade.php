@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 @section('content')
+
     <div class="container">
         <h2 class="my-5 text-center header-green">タスク一覧</h2>
 
@@ -45,13 +50,17 @@
 
                                 {{-- Done/UnDone Button--}}
                                 @if($todo->is_done === false)
-                                    {{ Form::open(['url' => route('todo.done', $todo->id), 'method' => 'put']) }}
+                                    {{-- ↓ {!! !!} に修正 --}}
+                                    {!! Form::open(['url' => route('todo.done', $todo->id), 'method' => 'put']) !!}
                                     {!! Form::button('<i class="fa-regular fa-circle-check pe-2"></i>完了！', ['class' => 'btn btn-blue', 'type' => 'submit']) !!}
-                                    {{ Form::close() }}
+                                    {{-- ↓ {!! !!} に修正 --}}
+                                    {!! Form::close() !!}
                                 @else
-                                    {{ Form::open(['url' => route('todo.undone', $todo->id), 'method' => 'put']) }}
+                                    {{-- ↓ {!! !!} に修正 --}}
+                                    {!! Form::open(['url' => route('todo.undone', $todo->id), 'method' => 'put']) !!}
                                     {!! Form::button('<i class="fa-solid fa-circle-xmark pe-2"></i>未完了に戻す！', ['class' => 'btn btn-blue', 'type' => 'submit']) !!}
-                                    {{ Form::close() }}
+                                    {{-- ↓ {!! !!} に修正 --}}
+                                    {!! Form::close() !!}
                                 @endif
                             </div>
                         </div>
@@ -60,5 +69,4 @@
             @endforeach
         </div>
     </div>
-
 @endsection
